@@ -9,7 +9,7 @@ class cloud-service ($version="LATEST"){
     type => "war"
   }
   file { "cloud-service.war":
-    require => [Class["nexus-artifact"], Service["tomcat7"]],
+    require => Class["nexus-artifact"],
     path => "/var/lib/tomcat7/webapps/cloud-service.war",
     ensure => "present",
     source => "/opt/puppet/artifacts/cloud-service.war"
