@@ -4,7 +4,6 @@ class nexus-artifact ($url="", $repo="", $groupId="", $artifactId="", $version="
   }
   $sourceName = "redirect?r=${repo}&g=${groupId}&a=${artifactId}&v=${version}&p=${type}"
   $escapedSourceName = "redirect\?r\=${repo}\&g\=${groupId}\&a\=${artifactId}\&v\=${version}\&p\=${type}"
-  notify{$escapedSourceName: }
   $destName = "${artifactId}.${type}"
   exec { "nexus-wget":
     require => File["/opt/puppet/artifacts/tmp"],
