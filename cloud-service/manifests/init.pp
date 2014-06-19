@@ -1,7 +1,6 @@
 class cloud-service ($version="LATEST"){
-  class {"tomcat7":}
+  class {"tomcat7": }
   class {"nexus-artifact":
-    require => Class["tomcat7"],
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.cloud",
@@ -10,7 +9,7 @@ class cloud-service ($version="LATEST"){
     type => "war"
   }
   file { "cloud-service.war":
-    require => Class["nexus-artifact"],
+    require => [Class["nexus-artifact"], Service["tomcat7"]],
     path => "/var/lib/tomcat7/webapps/cloud-service.war",
     ensure => "present",
     source => "/opt/puppet/artifacts/cloud-service.war"
