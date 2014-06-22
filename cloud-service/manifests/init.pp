@@ -1,4 +1,4 @@
-class cloud-service ($version="LATEST"){
+class cloud-service ($version="LATEST", $deployName="cloud-service"){
   class {"tomcat7": }
   class {"nexus-artifact":
     url => "build.revsys.co.uk/nexus",
@@ -10,14 +10,14 @@ class cloud-service ($version="LATEST"){
   }
   file { "cloud-service.war":
     require => Class["nexus-artifact"],
-    path => "/var/lib/tomcat7/webapps/cloud-service.war",
+    path => "/var/lib/tomcat7/webapps/${deployName}.war",
     ensure => "present",
     source => "/opt/puppet/artifacts/cloud-service.war"
   }
 
   file { "cloud-service.properties":
     require => File["cloud-service.war"],
-    path => "/var/lib/tomcat7/webapps/cloud-service/WEB-INF/classes/cloud-service.properties",
+    path => "/var/lib/tomcat7/webapps/${deployName}/WEB-INF/classes/cloud-service.properties",
     ensure => "present",
     content => template("cloud-service/cloud-service.properties.erb"),
     notify => Service["tomcat7"]
