@@ -1,6 +1,7 @@
-class haven-repository ($version="LATEST", $deployName="haven-repository"){
+class haven-repository ($version="LATEST", $deploy_name="haven-repository", $cloud_container=""){
   class {"resource-repository":
     version => $version,
-    deployName => $deployName
+    deploy-name => $deploy_name,
+    cloud_container => $cloud_container
   }
 }
