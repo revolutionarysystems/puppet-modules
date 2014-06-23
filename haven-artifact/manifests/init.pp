@@ -1,11 +1,8 @@
-class haven-artifact ($url="", $artifactId="", $version="") {
+class haven-artifact ($url="", $artifactId="", $version="", $type="") {
   include puppet-artifacts
-  file {["/opt/puppet/artifacts/${artifactId}"]:
-    ensure => "directory"
-  }
   exec { "haven-wget":
-    require => File["/opt/puppet/artifacts/${artifactId}"],
-    command => "/usr/bin/wget -N '${url}/${artifactId}/${version}/artifact'",
-    cwd => "/opt/puppet/artifacts/${artifactId}",
+    require => File["/opt/puppet/artifacts/"],
+    command => "/usr/bin/wget -N '${url}/${artifactId}/${version}/artifact/${artifactId}.${type}'",
+    cwd => "/opt/puppet/artifacts/",
   }
 }
