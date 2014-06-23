@@ -4,7 +4,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
     ensure => "directory"
   }
   class {"haven-artifact":
-    requires => File["/opt/puppet/artifacts/${artifactId}],
+    requires => File["/opt/puppet/artifacts/${artifactId}"],
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
     version => $version,
