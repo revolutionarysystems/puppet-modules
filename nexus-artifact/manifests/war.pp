@@ -1,4 +1,4 @@
-define nexus::war ($url="", $repo="", $groupId="", $artifactId="", $version=""){
+define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $version=""){
     package { "unzip":
         ensure => present,
     }

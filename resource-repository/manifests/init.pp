@@ -1,6 +1,6 @@
 class resource-repository ($version="LATEST", $deployName="resource-repository"){
   class {"tomcat7": }
-  nexus::war{ "resource-repository.war":
+  nexus-artifact::war{ "resource-repository.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.cloud",

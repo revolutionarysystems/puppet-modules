@@ -1,6 +1,6 @@
 class cloud-service ($version="LATEST", $deployName="cloud-service"){
   include tomcat7
-  nexus::war {"cloud-service.war":
+  nexus-artifact::war {"cloud-service.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.cloud",
