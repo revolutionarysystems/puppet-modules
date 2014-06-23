@@ -3,7 +3,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
   file {"/opt/puppet/artifacts/cloud-dashboard":
     ensure => "directory"
   }
-  haven-artifact { "cloud-dashboard.tar.gz"
+  haven-artifact { "cloud-dashboard.tar.gz": 
     require => File["/opt/puppet/artifacts/cloud-dashboard"],
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
