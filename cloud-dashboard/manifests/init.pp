@@ -3,7 +3,8 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
   class {"haven-artifact":
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
-    version => $version
+    version => $version,
+    type => "zip"
   }
   file { "cloud-dashboard.war":
     require => Class["haven-artifact"],
