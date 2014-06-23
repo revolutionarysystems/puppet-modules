@@ -26,7 +26,7 @@ class cloud-service ($version="LATEST", $deployName="cloud-service"){
     source => "/opt/puppet/artifacts/cloud-service"
   }
   file { "cloud-service.properties":
-    require => File["cloud-service.war"],
+    require => File["/var/lib/tomcat7/webapps/${deployName}"],
     path => "/var/lib/tomcat7/webapps/${deployName}/WEB-INF/classes/cloud-service.properties",
     ensure => "present",
     content => template("cloud-service/cloud-service.properties.erb"),
