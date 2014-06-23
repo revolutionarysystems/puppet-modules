@@ -3,7 +3,7 @@ class resource-repository ($version="LATEST", $deployName="resource-repository")
   nexus-artifact::war{ "resource-repository-service.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
-    groupId => "uk.co.revsys.cloud",
+    groupId => "uk.co.revsys.resource-repository",
     artifactId => "resource-repository-service",
     version => $version
   }
