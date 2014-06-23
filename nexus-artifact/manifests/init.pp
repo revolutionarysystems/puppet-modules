@@ -1,7 +1,5 @@
 class nexus-artifact ($url="", $repo="", $groupId="", $artifactId="", $version="", $type="jar") {
-  file {["/opt/puppet", "/opt/puppet/artifacts", "/opt/puppet/artifacts/tmp"]:
-    ensure => "directory"
-  }
+  include puppet-artifacts
   $sourceName = "redirect?r=${repo}&g=${groupId}&a=${artifactId}&v=${version}&p=${type}"
   $escapedSourceName = "redirect\?r\=${repo}\&g\=${groupId}\&a\=${artifactId}\&v\=${version}\&p\=${type}"
   $destName = "${artifactId}.${type}"
