@@ -8,7 +8,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
     version => $version,
-    type => "zip"
+    type => "tar.gz"
   }
   exec { "extract-cloud-dashboard":
     require => File["/opt/puppet/artifacts/cloud-dashboard"],
