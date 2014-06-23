@@ -1,25 +1,14 @@
 class cloud-service ($version="LATEST", $deployName="cloud-service"){
   include tomcat7
-  package { "unzip":
-    ensure => present,
-  }
-  file {"/opt/puppet/artifacts/cloud-service": 
-    ensure => directory
-  }
-  class {"nexus-artifact":
+  nexus::war {"cloud-service.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.cloud",
     artifactId => "cloud-service",
     version => $version,
-    type => "war"
-  }
-  exec { "extract-cloud-service":
-    require => [Package["unzip"], File["/opt/puppet/artifacts/cloud-service"]],
-    command => "/usr/bin/unzip -o ../cloud-service.war",
-    cwd => "/opt/puppet/artifacts/cloud-service",
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":
+    require => Nexus::War["cloud-service.war"],
     ensure => "directory",
     recurse => true,
     purge => true,

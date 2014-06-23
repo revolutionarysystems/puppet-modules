@@ -1,23 +1,21 @@
 class resource-repository ($version="LATEST", $deployName="resource-repository"){
   class {"tomcat7": }
-  class {"nexus-artifact":
+  nexus::war{ "resource-repository.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.cloud",
     artifactId => "resource-repository",
-    version => $version,
-    type => "war"
+    version => $version
   }
-  file { "resource-repository.war":
-    require => Class["nexus-artifact"],
-    path => "/var/lib/tomcat7/webapps/${deployName}.war",
-    ensure => "present",
-    source => "/opt/puppet/artifacts/resource-repository.war"
+  file { "/var/lib/tomcat7/webapps/${deployName}":
+    require => Nexus::War["resource-repository.war"],
+    ensure => "directory",
+    recurse => true,
+    purge => true,
+    source => "/opt/puppet/artifacts/resource-repository"
   }
-
-  file { "resource-repository.properties":
-    require => File["resource-repository.war"],
-    path => "/var/lib/tomcat7/webapps/${deployName}/WEB-INF/classes/resource-repository.properties",
+  file { "/var/lib/tomcat7/webapps/${deployName}/WEB-INF/classes/resource-repository.properties":
+    require => File["/var/lib/tomcat7/webapps/${deployName}"],
     ensure => "present",
     content => template("resource-repository/resource-repository.properties.erb"),
     notify => Service["tomcat7"]
