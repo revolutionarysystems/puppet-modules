@@ -1,5 +1,5 @@
 class cloud-service ($version="LATEST", $deployName="cloud-service"){
-  class {"tomcat7": }
+  include tomcat7
   class {"nexus-artifact":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",

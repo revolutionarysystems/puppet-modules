@@ -1,5 +1,5 @@
-class cloud-dashboard ($version="LATEST", $deployName="cloud-dashboard"){
-  class {"tomcat7": }
+class cloud-dashboard ($version="LATEST", $serviceUrl => "/cloud-service/", $deployName="cloud-dashboard"){
+  include tomcat7
   class {"haven-artifact":
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
