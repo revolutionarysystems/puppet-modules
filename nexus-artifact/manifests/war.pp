@@ -5,7 +5,7 @@ define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $ver
     file {"/opt/puppet/artifacts/${artifactId}": 
       ensure => directory
     }
-    nexus::artifact{"${groupId}.${artifactId}.${version}":
+    nexus-artifact{"${groupId}.${artifactId}.${version}":
         url => $url,
         repo => $repo,
         groupId => $groupId,
