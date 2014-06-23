@@ -8,7 +8,7 @@ define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $ver
         repo => $repo,
         groupId => $groupId,
         artifactId => $artifactId,
-        version => $versionId,
+        version => $version,
         type => "war"
     }
     exec { "extract-${artifactId}":
