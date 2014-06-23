@@ -14,7 +14,7 @@ class cloud-service ($version="LATEST", $deployName="cloud-service"){
     version => $version,
     type => "war"
   }
-  exec { "extract-artifact":
+  exec { "extract-cloud-service":
     require => [Package["unzip"], File["/opt/puppet/artifacts/cloud-service"]],
     command => "/usr/bin/unzip ../cloud-service.war",
     cwd => "/opt/puppet/artifacts/cloud-service",

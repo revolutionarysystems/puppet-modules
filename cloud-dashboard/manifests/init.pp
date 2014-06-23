@@ -10,7 +10,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
     version => $version,
     type => "zip"
   }
-  exec { "extract-artifact":
+  exec { "extract-cloud-dashboard":
     require => File["/opt/puppet/artifacts/cloud-dashboard"],
     command => "/bin/tar -zxvf ../cloud-dashboard.tar.gz",
     cwd => "/opt/puppet/artifacts/cloud-dashboard",
