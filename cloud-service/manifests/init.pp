@@ -16,7 +16,7 @@ class cloud-service ($version="LATEST", $deployName="cloud-service"){
   }
   exec { "extract-cloud-service":
     require => [Package["unzip"], File["/opt/puppet/artifacts/cloud-service"]],
-    command => "/usr/bin/unzip ../cloud-service.war",
+    command => "/usr/bin/unzip -o ../cloud-service.war",
     cwd => "/opt/puppet/artifacts/cloud-service",
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":

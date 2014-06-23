@@ -12,7 +12,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
   }
   exec { "extract-cloud-dashboard":
     require => File["/opt/puppet/artifacts/cloud-dashboard"],
-    command => "/bin/tar -zxvf ../cloud-dashboard.tar.gz",
+    command => "/bin/tar -zxf ../cloud-dashboard.tar.gz",
     cwd => "/opt/puppet/artifacts/cloud-dashboard",
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":
