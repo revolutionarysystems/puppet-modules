@@ -1,7 +1,5 @@
 define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $version=""){
-    package { "unzip":
-        ensure => present,
-    }
+    include unzip
     file {"/opt/puppet/artifacts/${artifactId}": 
       ensure => directory
     }
