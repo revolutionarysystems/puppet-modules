@@ -1,5 +1,11 @@
 class cloud-service ($version="LATEST", $deployName="cloud-service"){
   include tomcat7
+  package { "unzip":
+    ensure => present,
+  }
+  file {"/opt/puppet/artifacts/cloud-service": 
+    ensure => directory
+  }
   class {"nexus-artifact":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
@@ -8,13 +14,17 @@ class cloud-service ($version="LATEST", $deployName="cloud-service"){
     version => $version,
     type => "war"
   }
-  file { "cloud-service.war":
-    require => Class["nexus-artifact"],
-    path => "/var/lib/tomcat7/webapps/${deployName}.war",
-    ensure => "present",
-    source => "/opt/puppet/artifacts/cloud-service.war"
+  exec { "extract-artifact":
+    require => [Package["unzip"], File["/opt/puppet/artifacts/cloud-service"]],
+    command => "/usr/bin/unzip ../cloud-service.war",
+    cwd => "/opt/puppet/artifacts/cloud-service",
   }
-
+  file { "/var/lib/tomcat7/webapps/${deployName}":
+    ensure => "directory",
+    recurse => true,
+    purge => true,
+    source => "/opt/puppet/artifacts/cloud-service"
+  }
   file { "cloud-service.properties":
     require => File["cloud-service.war"],
     path => "/var/lib/tomcat7/webapps/${deployName}/WEB-INF/classes/cloud-service.properties",
