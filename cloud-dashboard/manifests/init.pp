@@ -1,19 +1,19 @@
 class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deployName="cloud-dashboard"){
   include tomcat7
-  file {"/opt/puppet/artifacts/${artifactId}":
+  file {"/opt/puppet/artifacts/cloud-dashboard":
     ensure => "directory"
   }
   class {"haven-artifact":
-    require => File["/opt/puppet/artifacts/${artifactId}"],
+    require => File["/opt/puppet/artifacts/"],
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "cloud-dashboard",
     version => $version,
     type => "zip"
   }
   archive { "/opt/puppet/artifacts/cloud-dashboard.zip":
-    require => Class["haven-artifact"],
+    require => [Class["haven-artifact"], File["/opt/puppet/artifacts/cloud-dashboard"]],
     ensure => unpacked,
-    cwd    => "/opt/puppet/artifacts/${artifactId}",
+    cwd    => "/opt/puppet/artifacts/cloud-dashboard",
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":
     ensure => "directory",
