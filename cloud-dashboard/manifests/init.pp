@@ -22,7 +22,7 @@ class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deploy
     source => "/opt/puppet/artifacts/cloud-dashboard"
   }
   file { "config.js":
-    require => File[/var/lib/tomcat7/webapps/${deployName}],
+    require => File["/var/lib/tomcat7/webapps/${deployName}"],
     path => "/var/lib/tomcat7/webapps/${deployName}/js/config.js",
     ensure => "present",
     content => template("cloud-dashboard/config.js"),
