@@ -8,7 +8,7 @@ class cloud-service ($version="LATEST", $deployName="cloud-service"){
     version => $version,
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":
-    require => Nexus::War["cloud-service.war"],
+    require => Nexus-Artifact::War["cloud-service.war"],
     ensure => "directory",
     recurse => true,
     purge => true,

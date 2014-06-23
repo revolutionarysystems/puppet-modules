@@ -12,7 +12,7 @@ define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $ver
         type => "war"
     }
     exec { "extract-${artifactId}":
-      require => [Package["unzip"], File["/opt/puppet/artifacts/${artifactId}"], Nexus::Artifact["${groupId}.${artifactId}.${version}"]],
+      require => [Package["unzip"], File["/opt/puppet/artifacts/${artifactId}"], Nexus-Artifact["${groupId}.${artifactId}.${version}"]],
       command => "/usr/bin/unzip -o ../${artifactId}.war",
       cwd => "/opt/puppet/artifacts/${artifactId}",
     }

@@ -8,7 +8,7 @@ class resource-repository ($version="LATEST", $deployName="resource-repository")
     version => $version
   }
   file { "/var/lib/tomcat7/webapps/${deployName}":
-    require => Nexus::War["resource-repository.war"],
+    require => Nexus-Artifact::War["resource-repository.war"],
     ensure => "directory",
     recurse => true,
     purge => true,
