@@ -7,10 +7,10 @@ define ui-framework ($version="LATEST", $deploy_name="ui-framework", $cloud_cont
     version => $version,
     deploy_name => $deploy_name
   }
-  file { "/var/lib/tomcat7/webapps/${deploy_name}/WEB-INF/classes/ui-framework.properties":
+  file { "/var/lib/tomcat7/webapps/${deploy_name}/WEB-INF/classes/ui.properties":
     require => File["/var/lib/tomcat7/webapps/${deploy_name}"],
     ensure => "present",
-    content => template("ui-framework/ui-framework.properties.erb"),
+    content => template("ui-framework/ui.properties.erb"),
     notify => Service["tomcat7"]
   }
 }
