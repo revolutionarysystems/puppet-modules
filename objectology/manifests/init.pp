@@ -10,7 +10,7 @@ define objectology ($version="LATEST", $deploy_name="objectology", $db_host="loc
   file { "/var/lib/tomcat7/webapps/${deploy_name}/WEB-INF/classes/objectology.properties":
     require => File["/var/lib/tomcat7/webapps/${deploy_name}"],
     ensure => "present",
-    content => template("user-manager/objectology.properties.erb"),
+    content => template("objectology/objectology.properties.erb"),
     notify => Service["tomcat7"]
   }
 }
