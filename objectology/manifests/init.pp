@@ -2,7 +2,7 @@ define objectology ($version="LATEST", $deploy_name="objectology", $db_host="loc
   tomcat-nexus-war{ "objectology-webapp.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => "snapshots",
-    groupId => "uk.co.revsys.user-manager",
+    groupId => "uk.co.revsys.objectology",
     artifactId => "objectology-webapp",
     version => $version,
     deploy_name => $deploy_name
