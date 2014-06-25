@@ -1,4 +1,4 @@
-define ui-framework ($version="LATEST", $deploy_name="ui-framework", $cloud_container="", $resources_path="", $user_manager_url=""){
+define ui-framework ($version="LATEST", $deploy_name="ui-framework", $cloud_container="", $resources_path="", $security_filters="none", $user_manager_url=""){
   tomcat-nexus-war{ "ui-framework.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => "snapshots",
