@@ -6,6 +6,6 @@ define subscription-manager ($version="LATEST", $deploy_name="subscription-manag
     db_name => $db_name,
     repository_type => "cloud",
     resources_container => "revsys-haven-artifacts",
-    resources_path => "/subscription-manager-templates/${templates_version}/artifact/"
+    resources_path => "subscription-manager-templates/${templates_version}/artifact"
   }
 }
