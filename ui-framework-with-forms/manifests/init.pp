@@ -1,4 +1,4 @@
-define ui-framework-with-forms ($version="LATEST", $deploy_name="ui-framework-with-forms", $repository_type="cloud", $resources_container="", $resources_path="", $security_filters="none", $user_manager_url=""){
+define ui-framework-with-forms ($version="LATEST", $deploy_name="ui-framework-with-forms", $repository_type="cloud", $resources_container="", $resources_path="", $security_filters="none", $user_manager_url="", $login_url="/login.html", $login_success_url="index.html"){
   tomcat-nexus-war{ "ui-framework-with-forms.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => "snapshots",
