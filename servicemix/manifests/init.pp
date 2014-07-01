@@ -78,4 +78,8 @@ class servicemix () {
     ensure => "present",
     source => "/opt/puppet/artifacts/jsont-osgi.jar"
   }
+  service { "servicemix"
+    require => File["/opt/servicemix"],
+    ensure => "running"
+  }
 }
