@@ -6,15 +6,20 @@ class servicemix () {
     artifactId => "servicemix",
     version => "4.5.2-SNAPSHOT"
   }
-  file { "/opt/servicemix":
+  file { "/opt/apache-servicemix-4.5.2":
     require => Nexus-Artifact::Tar["apache-servicemix.tar.gz"],
     ensure => "directory",
     recurse => true,
     mode => 755,
     source => "/opt/puppet/artifacts/servicemix"
   }
+  file { '/opt/servicemix':
+   require => File["/opt/apache-servicemix-4.5.2"],
+   ensure => 'link',
+   target => '/opt/apache-servicemix-4.5.2',
+  }
   file { '/etc/init.d/servicemix':
-   require => File["/opt/servicemix"],
+   require => File["/opt/apache-servicemix-4.5.2"],
    ensure => 'link',
    target => '/opt/servicemix/bin/karaf-service',
   }
@@ -54,7 +59,7 @@ class servicemix () {
    target => '/etc/init.d/servicemix',
   }
   nexus-artifact{ "esb-web-listener.jar":
-    require => File["/opt/servicemix"],
+    require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.esb",
@@ -68,7 +73,7 @@ class servicemix () {
     source => "/opt/puppet/artifacts/esb-web-listener.jar"
   }
   nexus-artifact{ "jsont.jar":
-    require => File["/opt/servicemix"],
+    require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
     groupId => "uk.co.revsys.jsont",
