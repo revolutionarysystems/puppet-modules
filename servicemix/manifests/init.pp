@@ -1,4 +1,4 @@
-class apache-servicemix () {
+class servicemix () {
   nexus-artifact::tar{ "apache-servicemix.tar.gz":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
