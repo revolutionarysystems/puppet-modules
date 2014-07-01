@@ -10,6 +10,7 @@ class servicemix () {
     require => Nexus-Artifact::Tar["apache-servicemix.tar.gz"],
     ensure => "directory",
     recurse => true,
+    mode => 755,
     source => "/opt/puppet/artifacts/servicemix"
   }
   file { '/etc/init.d/servicemix':
@@ -63,6 +64,7 @@ class servicemix () {
   file { "/opt/servicemix/deploy/esb-web-listener.jar": 
     require => Nexus-Artifact["esb-web-listener.jar"],
     ensure => "present",
+    mode => 755,
     source => "/opt/puppet/artifacts/esb-web-listener.jar"
   }
   nexus-artifact{ "jsont.jar":
@@ -76,6 +78,7 @@ class servicemix () {
   file { "/opt/servicemix/deploy/jsont.jar": 
     require => Nexus-Artifact["jsont.jar"],
     ensure => "present",
+    mode => 755,
     source => "/opt/puppet/artifacts/jsont-osgi.jar"
   }
   service { "servicemix":
