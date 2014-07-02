@@ -3,7 +3,7 @@ define haven-artifact ($url="", $artifactId="", $version="", $type="") {
     url => $url,
     artifactId => $artifactId,
     version => $version,
-    $file => "${artifactId}.${type}"
+    file => "${artifactId}.${type}"
   }
 }
 
@@ -24,7 +24,7 @@ define haven-artifact::tar ($url="", $artifactId="", $version="", $file="") {
     url => $url,
     artifactId => $artifactId,
     version => $version,
-    $file => "${file}.tar.gz"
+    file => "${file}.tar.gz"
   }
   exec { "extract-${file}":
     require => [File["/opt/puppet/artifacts/${file}"], Haven-Artifact::File["haven-artifact-file-${file}"]],
