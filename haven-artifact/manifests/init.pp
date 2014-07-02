@@ -9,7 +9,7 @@ define haven-artifact ($url="", $artifactId="", $version="", $type="") {
 
 define haven-artifact::file ($url="", $artifactId="", $version="", $file="") {
   include puppet-artifacts
-  exec { "haven-wget-${artifactId}":
+  exec { "haven-wget-${file}":
     require => File["/opt/puppet/artifacts/"],
     command => "/usr/bin/wget -N '${url}/${artifactId}/${version}/artifact/${file}'",
     cwd => "/opt/puppet/artifacts/",
