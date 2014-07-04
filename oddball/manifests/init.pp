@@ -1,4 +1,4 @@
-define oddball ($version="", $deploy_name="oddball", $resource_container="", $consumers="", $kinesis_application_name="", $kinesis_stream=""){
+define oddball ($version="", $deploy_name="oddball", $config_container="", $config_path="", $consumers="", $kinesis_application_name="", $kinesis_stream=""){
   include tomcat7
   tomcat-nexus-war{ "oddball-service.war":
     nexus_url => "build.revsys.co.uk/nexus",
