@@ -1,1 +1,8 @@
 db.host = <%= @db_host %>
+
+repository.type = cloud
+cloud.type = aws-s3
+cloud.identity = <%= cloud_identity %>
+cloud.credential = <%= cloud_credential %>
+resources.container = <%= application_config_container %>
+resources.path = <%= application_config_path %>
