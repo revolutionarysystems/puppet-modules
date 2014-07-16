@@ -1,4 +1,4 @@
-define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId="", $version="LATEST", $deploy_name="") {
+define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId="", $version="LATEST", $deploy_name="", $purge="true") {
 	include tomcat7
 	nexus-artifact::war{ "${artifactId}.war":
 		url => $nexus_url,
@@ -13,6 +13,8 @@ define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId
         group => "tomcat7",
         owner => "tomcat7",
 		recurse => true,
-		source => "/opt/puppet/artifacts/${artifactId}"
+        purge => $purge,
+		source => "/opt/puppet/artifacts/${artifactId}",
+        notify => Service["tomcat7"]
 	}
 }
