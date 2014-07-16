@@ -66,7 +66,7 @@ class servicemix () {
     artifactId => "esb-web-listener",
     version => "0.1.0-SNAPSHOT",
   }
-  file { "/opt/servicemix/deploy/esb-web-listener.jar": 
+  file { "/opt/apache-servicemix-4.5.2/deploy/esb-web-listener.jar": 
     require => Nexus-Artifact["esb-web-listener.jar"],
     ensure => "present",
     mode => 755,
@@ -80,7 +80,7 @@ class servicemix () {
     artifactId => "jsont-osgi",
     version => "0.1.0-SNAPSHOT",
   }
-  file { "/opt/servicemix/deploy/jsont.jar": 
+  file { "/opt/apache-servicemix-4.5.2/deploy/jsont.jar": 
     require => Nexus-Artifact["jsont.jar"],
     ensure => "present",
     mode => 755,
