@@ -28,7 +28,8 @@ define haven-artifact::tar ($url="", $artifactId="", $version="", $file="") {
   }
   exec { "extract-${file}":
     require => [File["/opt/puppet/artifacts/${file}"], Haven-Artifact::File["haven-artifact-file-${file}"]],
-    command => "/bin/tar -zxvf ../${file}.tar.gz",
     cwd => "/opt/puppet/artifacts/${file}",
+    command => "/bin/rm -rf ./* && /bin/tar -zxvf ../${file}.tar.gz && echo 1 > .puppet",
+    unless => "/usr/bin/find -name .puppet -newer ../${file}.tar.gz | grep -c '.*'"
   }
 }
