@@ -5,7 +5,8 @@ define ui-framework ($version="LATEST", $deploy_name="ui-framework", $repository
     groupId => "uk.co.revsys",
     artifactId => "ui-framework",
     version => $version,
-    deploy_name => $deploy_name
+    deploy_name => $deploy_name,
+    purge => false
   }
   file { "/var/lib/tomcat7/webapps/${deploy_name}/WEB-INF/classes/ui.properties":
     require => File["/var/lib/tomcat7/webapps/${deploy_name}"],

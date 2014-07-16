@@ -17,4 +17,11 @@ define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId
 		source => "/opt/puppet/artifacts/${artifactId}",
         notify => Service["tomcat7"]
 	}
+    file { "/var/lib/tomcat7/webapps/${deploy_name}/WEB-INF":
+		ensure => "directory",
+		recurse => true,
+        purge => true,
+		source => "/opt/puppet/artifacts/${artifactId}/WEB-INF",
+        notify => Service["tomcat7"]
+	}
 }
