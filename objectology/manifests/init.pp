@@ -1,4 +1,4 @@
-define objectology ($version="LATEST", $deploy_name="objectology", $db_host="localhost", $db_name="objectology", $repository_type="cloud", $resources_container="", $resources_path="/"){
+define objectology ($version="LATEST", $deploy_name="objectology", $db_host="localhost", $db_name="objectology", $template_repository_type="cloud", $template_container="", $template_path="/", $instance_repository_type="cloud", $instance_container="", $instance_path="/"){
   tomcat-nexus-war{ "objectology-webapp.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => "snapshots",
