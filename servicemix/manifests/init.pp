@@ -1,4 +1,4 @@
-class servicemix () {
+class servicemix ($features="") {
   nexus-artifact::tar{ "apache-servicemix.tar.gz":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
@@ -89,5 +89,10 @@ class servicemix () {
   service { "servicemix":
     require => File["/etc/init.d/servicemix"],
     ensure => "running"
+  }
+  file { "/opt/apache-servicemix-4.5.2/etc/org.apache.karaf.features.cfg": 
+    ensure => "present",
+    mode => 755,
+    content => template("servicemix/org.apache.karaf.features.cfg.erb")
   }
 }
