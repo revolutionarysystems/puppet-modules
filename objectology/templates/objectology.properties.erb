@@ -1,14 +1,17 @@
 db.host = <%= db_host %>
 db.name = <%= db_name %>
 template.repository.type = <%= template_repository_type %>
+template.container = <%= template_container %>
+template.path = <%= template_path %>
 instance.repository.type = <%= instance_repository_type %>
+instance.container = <%= instance_container %>
+instance.path = <%= instance_path %>
+view.repository.type = <%= view_repository_type %>
+view.container = <%= view_container %>
+view.path = <%= view_path %>
 cloud.type = aws-s3
 cloud.identity = <%= cloud_identity %>
 cloud.credential = <%= cloud_credential %>
-template.container = <%= template_container %>
-template.path = <%= template_path %>
-instance.container = <%= instance_container %>
-instance.path = <%= instance_path %>
 security = <%= security %>
 user.manager.db.host = <% user_manager_db_host %>
 security.administrator.role = <%= security_administrator_role %>
