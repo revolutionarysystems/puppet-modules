@@ -1,5 +1,4 @@
 define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId="", $version="LATEST", $deploy_name="", $purge="true") {
-	include tomcat7
 	nexus-artifact::war{ "${artifactId}.war":
 		url => $nexus_url,
 		repo => $nexus_repo,
