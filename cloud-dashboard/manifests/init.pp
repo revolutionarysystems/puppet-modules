@@ -1,5 +1,4 @@
 class cloud-dashboard ($version="LATEST", $serviceUrl="/cloud-service/", $deployName="cloud-dashboard"){
-  include tomcat7
   file {"/opt/puppet/artifacts/cloud-dashboard":
     ensure => "directory"
   }

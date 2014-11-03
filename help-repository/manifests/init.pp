@@ -1,5 +1,4 @@
 define help-repository ($version="", $deploy_name="help-repository", $security="disabled", $user_manager_db_host="localhost", $security_administrator_role="administrator"){
-  include tomcat7
   tomcat-nexus-war{ "help-repository-service.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => "snapshots",
