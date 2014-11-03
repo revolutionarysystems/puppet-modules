@@ -1,4 +1,7 @@
 class servicemix ($features="") {
+  package { "default-jre":
+    ensure => present
+  }
   nexus-artifact::tar{ "apache-servicemix.tar.gz":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
