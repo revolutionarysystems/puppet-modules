@@ -9,7 +9,7 @@ define apache2-tomcat-proxy (){
     enable => true
   }
   
-  file { "/etc/apache2/sites-enabled/000-default.conf":
+  file { "/etc/apache2/sites-available/000-default.conf":
     ensure => "present",
     content => template("apache2-tomcat-proxy/000-default.conf.erb"),
     notify => Service["apache2"]
