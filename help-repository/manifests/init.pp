@@ -13,8 +13,4 @@ define help-repository ($version="", $deploy_name="help-repository", $security="
     content => template("help-repository/help-repository.properties.erb"),
     notify => Service["tomcat7"]
   }
-  file {["/opt/help-repository", "/opt/help-repository/binaries", "/opt/help-repository/content"]:
-    mode => 777,
-    ensure => "directory",
-  }
 }

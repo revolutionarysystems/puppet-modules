@@ -1,0 +1,26 @@
+{
+    "name" : "Persisted-Repository",
+    "workspaces" : {
+        "predefined" : ["otherWorkspace"],
+        "default" : "default",
+        "allowCreation" : true
+    },
+    "security" : {
+        "anonymous" : {
+            "roles" : ["readonly","readwrite","admin"],
+            "useOnFailedLogin" : false
+        }
+    },
+    "storage" : {
+        "cacheConfiguration" : "mysql-infinispan-configuration.xml",
+        "cacheName" : "persisted-repository",
+        "binaryStorage" : {
+            "type"  : "database",
+            "driverClass" : "com.mysql.jdbc.Driver",
+            "url" : "jdbc:mysql://<%= db_name %>/<%= binary_db_name %>",
+            "username" : "<%= db_user %>",
+            "password": "<%= db_password %>"
+        }
+    }
+
+}
