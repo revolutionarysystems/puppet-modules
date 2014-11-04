@@ -12,11 +12,13 @@ define apache2-tomcat-proxy (){
   file { "/etc/apache2/mods-enabled/proxy.load":
     ensure => link,
     target => "/etc/apache2/mods-available/proxy.load",
+    notify => Service["apache2"]
   }
   
   file { "/etc/apache2/mods-enabled/proxy_http.load":
     ensure => link,
     target => "/etc/apache2/mods-available/proxy_http.load",
+    notify => Service["apache2"]
   }
   
   file { "/etc/apache2/sites-available/000-default.conf":
