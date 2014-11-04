@@ -1,4 +1,4 @@
-class cloud-service ($version="LATEST", $deployName="cloud-service", $template="", $controller="", $keypair=""){
+class cloud-service ($version="LATEST", $deployName="cloud-service", $templateId="", $controller="", $keypair=""){
   nexus-artifact::war {"cloud-service.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
