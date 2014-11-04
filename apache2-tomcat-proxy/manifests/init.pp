@@ -9,6 +9,16 @@ define apache2-tomcat-proxy (){
     enable => true
   }
   
+  file { "/etc/apache2/mods-enabled/proxy.load":
+    ensure => link,
+    target => "/etc/apache2/mods-available/proxy.load",
+  }
+  
+  file { "/etc/apache2/mods-enabled/proxy_http.load":
+    ensure => link,
+    target => "/etc/apache2/mods-available/proxy_http.load",
+  }
+  
   file { "/etc/apache2/sites-available/000-default.conf":
     ensure => "present",
     content => template("apache2-tomcat-proxy/000-default.conf.erb"),
