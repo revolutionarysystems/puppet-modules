@@ -84,7 +84,7 @@ class servicemix ($repo="releases", $smx_version="LATEST", $utils_version="LATES
     version => $jsont_version,
   }
   file { "/opt/apache-servicemix-4.5.2/deploy/jsont-osgi.jar": 
-    require => Nexus-Artifact["jsont.jar"],
+    require => Nexus-Artifact["jsont-osgi.jar"],
     ensure => "present",
     mode => 755,
     source => "/opt/puppet/artifacts/jsont-osgi.jar"
