@@ -1,4 +1,4 @@
-class resource-repository ($version="LATEST", $deploy_name="resource-repository", $repository_type="cloud", $resource_container=""){
+class resource-repository ($version="LATEST", $deploy_name="resource-repository", $repository_type="cloud", $resource_container="", $security="disabled", $security_role=""){
   nexus-artifact::war{ "resource-repository-service.war":
     url => "build.revsys.co.uk/nexus",
     repo => "snapshots",
