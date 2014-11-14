@@ -90,7 +90,7 @@ class servicemix ($repo="releases", $smx_version="LATEST", $utils_version="LATES
     source => "/opt/puppet/artifacts/jsont-osgi.jar"
   }
   nexus-artifact{ "jsont-camel.jar":
-    require => Class["servicemix"],
+    require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
     repo => $repo,
     groupId => "uk.co.revsys.jsont",
@@ -104,7 +104,7 @@ class servicemix ($repo="releases", $smx_version="LATEST", $utils_version="LATES
     source => "/opt/puppet/artifacts/jsont-camel.jar"
   }
   nexus-artifact{ "esb-utils.jar":
-    require => Class["servicemix"],
+    require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
     repo => $repo,
     groupId => "uk.co.revsys.esb",
