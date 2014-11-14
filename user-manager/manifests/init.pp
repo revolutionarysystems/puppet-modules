@@ -1,4 +1,4 @@
-class user-manager ($version="LATEST", $repo="snapshots", $deploy_name="user-manager", $db_host="localhost", $config_container="", $config_path="", $resources_container=""){
+class user-manager ($version="LATEST", $repo="snapshots", $deploy_name="user-manager", $db_host="localhost", $cloud_identity="", $cloud_credential="", $config_container="", $config_path="", $resources_container=""){
   tomcat-nexus-war{ "user-manager-service.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => $repo,
