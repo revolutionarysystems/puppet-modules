@@ -1,13 +1,13 @@
-class servicemix ($features="") {
+class servicemix ($repo="releases", $smx_version="LATEST", $utils_version="LATEST", $web_listener_version="LATEST", $jsont_version="LATEST", $features="") {
   package { "default-jre":
     ensure => present
   }
   nexus-artifact::tar{ "apache-servicemix.tar.gz":
     url => "build.revsys.co.uk/nexus",
-    repo => "releases",
+    repo => $repo,
     groupId => "uk.co.revsys.servicemix",
     artifactId => "servicemix",
-    version => "4.5.2"
+    version => $smx_version
   }
   file { "/opt/apache-servicemix-4.5.2":
     require => Nexus-Artifact::Tar["apache-servicemix.tar.gz"],
@@ -64,10 +64,10 @@ class servicemix ($features="") {
   nexus-artifact{ "esb-web-listener.jar":
     require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
-    repo => "snapshots",
+    repo => $repo,
     groupId => "uk.co.revsys.esb",
     artifactId => "esb-web-listener",
-    version => "0.1.0-SNAPSHOT",
+    version => $web_listener_version,
   }
   file { "/opt/apache-servicemix-4.5.2/deploy/esb-web-listener.jar": 
     require => Nexus-Artifact["esb-web-listener.jar"],
@@ -75,19 +75,47 @@ class servicemix ($features="") {
     mode => 755,
     source => "/opt/puppet/artifacts/esb-web-listener.jar"
   }
-  nexus-artifact{ "jsont.jar":
+  nexus-artifact{ "jsont-osgi.jar":
     require => File["/opt/apache-servicemix-4.5.2"],
     url => "build.revsys.co.uk/nexus",
-    repo => "snapshots",
+    repo => $repo,
     groupId => "uk.co.revsys.jsont",
     artifactId => "jsont-osgi",
-    version => "0.1.0-SNAPSHOT",
+    version => $jsont_version,
   }
-  file { "/opt/apache-servicemix-4.5.2/deploy/jsont.jar": 
+  file { "/opt/apache-servicemix-4.5.2/deploy/jsont-osgi.jar": 
     require => Nexus-Artifact["jsont.jar"],
     ensure => "present",
     mode => 755,
     source => "/opt/puppet/artifacts/jsont-osgi.jar"
+  }
+  nexus-artifact{ "jsont-camel.jar":
+    require => Class["servicemix"],
+    url => "build.revsys.co.uk/nexus",
+    repo => $repo,
+    groupId => "uk.co.revsys.jsont",
+    artifactId => "jsont-camel",
+    version => $jsont_version,
+  }
+  file { "/opt/apache-servicemix-4.5.2/deploy/jsont-camel.jar": 
+    require => Nexus-Artifact["jsont-camel.jar"],
+    ensure => "present",
+    mode => 755,
+    source => "/opt/puppet/artifacts/jsont-camel.jar"
+  }
+  nexus-artifact{ "esb-utils.jar":
+    require => Class["servicemix"],
+    url => "build.revsys.co.uk/nexus",
+    repo => $repo,
+    groupId => "uk.co.revsys.esb",
+    artifactId => "esb-utils",
+    version => $utils_version,
+  }
+  file { "/opt/apache-servicemix-4.5.2/deploy/esb-utils.jar": 
+    require => Nexus-Artifact["esb-utils.jar"],
+    ensure => "present",
+    mode => 755,
+    source => "/opt/puppet/artifacts/esb-utils.jar"
   }
   service { "servicemix":
     require => File["/etc/init.d/servicemix"],
