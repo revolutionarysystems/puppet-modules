@@ -4,10 +4,10 @@ class servicemix ($features="") {
   }
   nexus-artifact::tar{ "apache-servicemix.tar.gz":
     url => "build.revsys.co.uk/nexus",
-    repo => "snapshots",
+    repo => "releases",
     groupId => "uk.co.revsys.servicemix",
     artifactId => "servicemix",
-    version => "4.5.2-SNAPSHOT"
+    version => "4.5.2"
   }
   file { "/opt/apache-servicemix-4.5.2":
     require => Nexus-Artifact::Tar["apache-servicemix.tar.gz"],
