@@ -14,7 +14,7 @@ define ami-scripts($version="LATEST"){
       owner => "root",
       group => "root",
       mode => 755
-      source => "/opt/puppet/artifacts/ami-scripts",
+      source => "/opt/puppet/artifacts/ami-scripts"
     }
 
 }
