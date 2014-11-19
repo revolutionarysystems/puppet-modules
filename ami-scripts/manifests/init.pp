@@ -13,7 +13,7 @@ define ami-scripts($version="LATEST"){
       recurse => true,
       owner => "root",
       group => "root",
-      mode => 755
+      mode => 755,
       source => "/opt/puppet/artifacts/ami-scripts"
     }
 
