@@ -1,7 +1,7 @@
 define ami-scripts($version="LATEST"){
 
     haven-artifact::tar { "ami-scripts.tar.gz":
-      url => "http://build.revsys.com/haven-repository",
+      url => "http://build.revsys.co.uk/haven-repository",
       artifactId => "ami-scripts",
       version => $version,
       file => "ami-scripts"
