@@ -1,0 +1,34 @@
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        RewriteEngine On
+# This will enable the Rewrite capabilities
+
+RewriteCond %{HTTPS} !=on
+# This checks to make sure the connection is not already HTTPS
+
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+
+
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        SSLEngine on
+        SSLCertificateFile /root/ssl/certificate.crt
+        SSLCertificateKeyFile /root/ssl/certificate_key.key
+        SSLCertificateChainFile /root/ssl/certificate_bundle.crt
+
+        ProxyPass / http://localhost:8080/
+        ProxyPassReverse / http://localhost:8080/
+</VirtualHost>
