@@ -23,7 +23,7 @@ define apache2-tomcat-proxy-ssl (){
   
   file { "/etc/apache2/sites-available/000-default.conf":
     ensure => "present",
-    content => template("apache2-tomcat-proxy/000-default.conf.erb"),
+    content => template("apache2-tomcat-proxy-ssl/000-default.conf.erb"),
     notify => Service["apache2"]
   }
 }
