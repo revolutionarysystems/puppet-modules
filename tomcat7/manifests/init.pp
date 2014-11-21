@@ -14,4 +14,9 @@ define tomcat7 ($max_heap_size="512m", $permgen_size="32m", $max_permgen_size="6
     content => template("tomcat7/tomcat7.erb"),
     notify => Service["tomcat7"]
   }
+  
+  file { '/opt/tomcat7webapps':
+      ensure => 'link',
+      target => '/var/lib/tomcat7/webapps'
+    }
 }
