@@ -1,4 +1,4 @@
-define apache2-tomcat-proxy-ssl (){
+define apache2-tomcat-proxy-ssl ($cert_name="certificate"){
   package { "apache2":
     ensure => present,
     before => Service["apache2"]

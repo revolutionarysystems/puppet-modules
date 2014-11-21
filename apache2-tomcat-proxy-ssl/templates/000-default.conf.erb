@@ -25,9 +25,9 @@ RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
         SSLEngine on
-        SSLCertificateFile /root/ssl/certificate.crt
-        SSLCertificateKeyFile /root/ssl/certificate_key.key
-        SSLCertificateChainFile /root/ssl/certificate_bundle.crt
+        SSLCertificateFile /root/ssl/<%= cert_name %>.crt
+        SSLCertificateKeyFile /root/ssl/<%= cert_name %>_key.key
+        SSLCertificateChainFile /root/ssl/<%= cert_name %>_bundle.crt
 
         ProxyPass / http://localhost:8080/
         ProxyPassReverse / http://localhost:8080/
