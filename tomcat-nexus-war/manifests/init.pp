@@ -4,7 +4,8 @@ define tomcat-nexus-war ($nexus_url="", $nexus_repo="", $groupId="", $artifactId
 		repo => $nexus_repo,
 		groupId => $groupId,
 		artifactId => $artifactId,
-		version => $version
+		version => $version,
+        deploy_name => $deploy_name
 	}
 	file { "/var/lib/tomcat7/webapps/${deploy_name}":
 		require => Nexus-Artifact::War["${artifactId}-${deploy_name}.war"],
