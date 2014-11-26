@@ -9,7 +9,8 @@ define nexus-artifact::war ($url="", $repo="", $groupId="", $artifactId="", $ver
         groupId => $groupId,
         artifactId => $artifactId,
         version => $version,
-        type => "war"
+        type => "war",
+        deploy_name => $deploy_name
     }
     exec { "extract-${artifactId}-${deploy_name}":
       require => [Package["unzip"], File["/opt/puppet/artifacts/${artifactId}-${deploy_name}"], Nexus-Artifact["${groupId}.${artifactId}.${version}.${deploy_name}"]],
