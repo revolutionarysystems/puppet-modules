@@ -84,4 +84,8 @@ class servicemix ($features="", $repo="releases", $dependencies_version="LATEST"
     mode => 755,
     source => "/opt/puppet/artifacts/esb-dependencies"
   }
+  file { '/opt/servicemix/routes':
+      ensure => 'link',
+      target => '/opt/apache-servicemix-4.5.2/deploy'
+    }
 }
