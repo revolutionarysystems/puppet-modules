@@ -21,6 +21,11 @@ class servicemix ($features="", $repo="releases", $dependencies_version="LATEST"
    ensure => 'link',
    target => '/opt/apache-servicemix-4.5.2',
   }
+  file { '/opt/smx':
+   require => File["/opt/apache-servicemix-4.5.2"],
+   ensure => 'link',
+   target => '/opt/apache-servicemix-4.5.2',
+  }
   file { '/etc/init.d/servicemix':
    require => File["/opt/apache-servicemix-4.5.2"],
    ensure => 'link',
@@ -84,8 +89,4 @@ class servicemix ($features="", $repo="releases", $dependencies_version="LATEST"
     mode => 755,
     source => "/opt/puppet/artifacts/esb-dependencies"
   }
-  file { '/opt/apache-servicemix-4.5.2/routes':
-      ensure => 'link',
-      target => '/opt/apache-servicemix-4.5.2/deploy'
-    }
 }
