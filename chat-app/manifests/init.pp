@@ -17,7 +17,7 @@ class chat-app ($version="LATEST") {
     source => "/opt/puppet/artifacts/chat-app"
   }
   
-  exec { "run_chat":
+  exec { "run_chat_app":
     require => File['/opt/chat-app'],
     cwd => "/opt/chat-app",
     command => "forever start --uid chat-app -a -w server.js",
