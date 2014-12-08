@@ -1,7 +1,5 @@
 class chat-server ($version="LATEST") {
 
-  include node
-
   include forever
   
   haven-artifact::tar { "chat-server.tar.gz": 

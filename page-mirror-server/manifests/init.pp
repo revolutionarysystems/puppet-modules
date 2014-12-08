@@ -1,7 +1,5 @@
 class page-mirror-server ($version="LATEST") {
 
-  include node
-
   include forever
   
   haven-artifact::tar { "page-mirror-server.tar.gz": 
