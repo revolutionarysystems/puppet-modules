@@ -6,11 +6,11 @@ class chat-server ($version="LATEST") {
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "chat-server",
     version => $version,
-    file => "page-mirror-server"
+    file => "chat-server"
   }
   
   file { "/opt/chat-server":
-    require => Haven-Artifact::Tar["page-mirror-server.tar.gz"],
+    require => Haven-Artifact::Tar["chat-server.tar.gz"],
     ensure => "directory",
     recurse => true,
     purge => true,
