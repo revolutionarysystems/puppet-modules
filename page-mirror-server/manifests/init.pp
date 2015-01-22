@@ -21,7 +21,7 @@ class page-mirror-server ($version="LATEST") {
     require => File['/opt/page-mirror-server'],
     cwd => "/opt/page-mirror-server",
     command => "forever start --uid page-mirror -a -w server.js",
-    onlyif => "forever list | grep page-mirror | wc -l",
+    onlyif => "forever list | grep page-mirror | wc -l | grep -q 0",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
 }
