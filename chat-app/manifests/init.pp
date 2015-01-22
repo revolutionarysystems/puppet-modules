@@ -21,7 +21,7 @@ class chat-app ($version="LATEST") {
     require => File['/opt/chat-app'],
     cwd => "/opt/chat-app",
     command => "forever start --uid chat-app -a -w server.js",
-    onlyif => "forever list | grep chat-app | wc -l",
+    onlyif => "forever list | grep chat-app | wc -l | grep -q 0",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
 }
