@@ -1,4 +1,4 @@
-define oddball ($version="", $repo="releases", $deploy_name="oddball", $cloud_identity="", $cloud_credential="", $config_container="", $config_path="", $consumers="", $kinesis_application_name="", $kinesis_stream="", $user_manager_db_host="", $security_administrator_role="oddball:administrator", $security_account_owner_role="user-manager:account-owner", $datastore_host="", $datastore_port="27017"){
+define oddball ($version="", $repo="releases", $deploy_name="oddball", $cloud_identity="", $cloud_credential="", $config_container="", $config_path="", $consumers="", $kinesis_application_name="", $kinesis_stream="", $user_manager_db_host="", $security_administrator_role="oddball:administrator", $security_account_owner_role="user-manager:account-owner", $security_user_role="oddball:user", $datastore_host="", $datastore_port="27017"){
   tomcat-nexus-war{ "oddball-service.war":
     nexus_url => "build.revsys.co.uk/nexus",
     nexus_repo => $repo,
