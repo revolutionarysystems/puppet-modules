@@ -18,9 +18,9 @@ class page-mirror-server ($version="LATEST", $port="8070", $db_type="memory", $d
   }
   
   file { "/opt/page-mirror-server/config.js":
-    require => File["/opt/page-mirror-server],
+    require => File["/opt/page-mirror-server"],
     ensure => "present",
-    content => template("page-mirror-server/config.js.erb"),
+    content => template("page-mirror-server/config.js.erb")
   }
   
   exec { "run_page_mirror":
