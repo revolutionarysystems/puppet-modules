@@ -1,4 +1,4 @@
-class page-mirror-server ($version="LATEST") {
+class page-mirror-server ($version="LATEST", $port="8070", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist") {
 
   include forever
   
@@ -15,6 +15,12 @@ class page-mirror-server ($version="LATEST") {
     recurse => true,
     purge => true,
     source => "/opt/puppet/artifacts/page-mirror-server"
+  }
+  
+  file { "/opt/page-mirror-server/config.js":
+    require => File["/opt/page-mirror-server],
+    ensure => "present",
+    content => template("page-mirror-server/config.js.erb"),
   }
   
   exec { "run_page_mirror":

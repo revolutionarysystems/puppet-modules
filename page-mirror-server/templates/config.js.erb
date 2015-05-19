@@ -1,0 +1,12 @@
+module.exports = {
+	port: <%= port %>,
+	db: {
+		type:"<%= db_type %>",
+		host:"<%= db_host %>",
+		database:"<%= db_name %>",
+		tables:{
+			recordings: "<%= db_table_recordings %>",
+			blacklist: "<%= db_table_blacklist %>"
+		}
+	}
+};
