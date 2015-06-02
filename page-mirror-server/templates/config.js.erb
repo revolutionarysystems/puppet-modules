@@ -1,5 +1,11 @@
 module.exports = {
+    protocol: "<%= protocol %>",
 	port: <%= port %>,
+    ssl: {
+        key: "<%= ssl_key %>"
+        cert: "<%= ssl_cert %>"
+        ca: "<%= ssl_ca %>"
+    },
 	db: {
 		type:"<%= db_type %>",
 		host:"<%= db_host %>",
