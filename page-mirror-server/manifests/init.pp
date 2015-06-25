@@ -1,4 +1,4 @@
-class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ssl_key="", $ssl_cert="", $ssl_ca="", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist") {
+class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ssl_key="", $ssl_cert="", $ssl_ca="", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist", $cloud_identity="", $cloud_credential="") {
 
   include forever
   
@@ -13,6 +13,7 @@ class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ss
     require => Haven-Artifact::Tar["page-mirror-server.tar.gz"],
     ensure => "directory",
     recurse => true,
+    mode => 755,
     purge => true,
     source => "/opt/puppet/artifacts/page-mirror-server"
   }
@@ -23,10 +24,19 @@ class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ss
     content => template("page-mirror-server/config.js.erb")
   }
   
+  file { "/root/.aws/":
+    ensure => "directory"
+  }
+  
+  file { "/root/.aws/credentials":
+    ensure => "present",
+    content => template("page-mirror-server/credentials.erb")
+  }
+  
   exec { "run_page_mirror":
     require => File['/opt/page-mirror-server'],
     cwd => "/opt/page-mirror-server",
-    command => "forever start --uid page-mirror -a -w server.js",
+    command => "forever start --uid page-mirror -a -w ./node_modules/kinesis-client-library/bin/launch --consumer kinesis-consumer.js --table recordings --stream recordings --aws.region us-east-1",
     onlyif => "forever list | grep page-mirror | wc -l | grep -q 0",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
