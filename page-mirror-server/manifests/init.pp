@@ -2,7 +2,17 @@ class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ss
 
   include forever
   
+  file { "/root/.aws/":
+    ensure => "directory"
+  }
+  
+  file { "/root/.aws/credentials":
+    ensure => "present",
+    content => template("page-mirror-server/credentials.erb")
+  }
+  
   haven-artifact::tar { "page-mirror-server.tar.gz": 
+    require => File["/root/.aws/credentials"],
     url => "build.revsys.co.uk/haven-repository",
     artifactId => "page-mirror-server",
     version => $version,
@@ -22,15 +32,6 @@ class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ss
     require => File["/opt/page-mirror-server"],
     ensure => "present",
     content => template("page-mirror-server/config.js.erb")
-  }
-  
-  file { "/root/.aws/":
-    ensure => "directory"
-  }
-  
-  file { "/root/.aws/credentials":
-    ensure => "present",
-    content => template("page-mirror-server/credentials.erb")
   }
   
   exec { "run_page_mirror":
