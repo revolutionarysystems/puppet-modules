@@ -6,7 +6,11 @@ module.exports = {
         cert: "<%= ssl_cert %>",
         ca: "<%= ssl_ca %>"
     },
-    asset_bucket: "<%= asset_bucket %>",
+    assets:{
+        bucket: "<%= asset_bucket %>",
+        check_interval: <%= asset_check_interval %>,
+		broken_check_interval: <%= asset_error_check_interval %>
+    },
 	db: {
 		type:"<%= db_type %>",
 		host:"<%= db_host %>",

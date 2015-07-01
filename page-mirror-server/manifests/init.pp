@@ -1,4 +1,4 @@
-class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ssl_key="", $ssl_cert="", $ssl_ca="", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist", $cloud_identity="", $cloud_credential="", $asset_bucket="") {
+class page-mirror-server ($version="LATEST", $port="8070", $protocol="http", $ssl_key="", $ssl_cert="", $ssl_ca="", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist", $cloud_identity="", $cloud_credential="", $asset_bucket="", $asset_check_interval="60000", $asset_error_check_interval="120000") {
 
   include forever
   
