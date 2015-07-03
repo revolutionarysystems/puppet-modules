@@ -24,7 +24,7 @@ class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localh
     content => template("page-mirror-server/config.js.erb")
   }
   
-  exec { "run_page_mirror":
+  exec { "run_page_mirror_server":
     require => File['/opt/page-mirror-server'],
     environment => ["AWS_ACCESS_KEY_ID=${cloud_identity}", "AWS_SECRET_ACCESS_KEY=${cloud_credential}"],
     cwd => "/opt/page-mirror-server",

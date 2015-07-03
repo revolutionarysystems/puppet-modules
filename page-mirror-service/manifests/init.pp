@@ -24,7 +24,7 @@ class page-mirror-service ($version="LATEST", $port="8070", $protocol="http", $s
     content => template("page-mirror-service/config.js.erb")
   }
   
-  exec { "run_page_mirror":
+  exec { "run_page_mirror_service":
     require => File['/opt/page-mirror-service'],
     cwd => "/opt/page-mirror-service",
     command => "forever start --uid page-mirror-service -a -w service.js",
