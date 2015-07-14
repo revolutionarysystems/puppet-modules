@@ -1,4 +1,4 @@
-class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist", $cloud_identity="", $cloud_credential="", $asset_bucket="", $asset_check_interval="60000", $asset_error_check_interval="120000") {
+class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localhost", $db_name="recordings", $db_table_recordings="recordings", $db_table_blacklist="blacklist", $cloud_identity="", $cloud_credential="", $asset_bucket="", $asset_check_interval="60000", $asset_error_check_interval="120000", $stream_name="recordings", $applicationName="recordings", $region="us-east-1") {
 
   include forever
   
@@ -24,11 +24,17 @@ class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localh
     content => template("page-mirror-server/config.js.erb")
   }
   
+  file { "/opt/page-mirror-server/aws.properties":
+    require => File["/opt/page-mirror-server"],
+    ensure => "present",
+    content => template("page-mirror-server/aws.properties.erb")
+  }
+  
   exec { "run_page_mirror_server":
     require => File['/opt/page-mirror-server'],
     environment => ["AWS_ACCESS_KEY_ID=${cloud_identity}", "AWS_SECRET_ACCESS_KEY=${cloud_credential}"],
     cwd => "/opt/page-mirror-server",
-    command => "forever start --uid page-mirror-server -a -w ./node_modules/kinesis-client-library/bin/launch --consumer /opt/page-mirror-server/kinesis-consumer.js --table recordings --stream recordings --aws.region us-east-1",
+    command => "forever start --uid page-mirror-server -a -w ./node_modules/aws-kcl/bin/kcl-bootstrap -e -p aws.properties --java /usr/bin/java",
     onlyif => "forever list | grep page-mirror-server | wc -l | grep -q 0",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
