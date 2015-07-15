@@ -21,7 +21,7 @@ class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localh
   
   exec{ "restart-page-mirror-server":
     refreshonly => true,
-    command => "ps -ef | grep page-mirror-server | grep -v grep | awk '{print $2}' | xargs kill -9",
+    command => "ps -ef | grep page-mirror-server | grep -v grep | awk '{print \$2}' | xargs kill -9",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
   
