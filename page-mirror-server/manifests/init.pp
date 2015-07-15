@@ -41,7 +41,7 @@ class page-mirror-server ($version="LATEST", $db_type="memory", $db_host="localh
     require => File['/opt/page-mirror-server'],
     environment => ["AWS_ACCESS_KEY_ID=${cloud_identity}", "AWS_SECRET_ACCESS_KEY=${cloud_credential}"],
     cwd => "/opt/page-mirror-server",
-    command => "forever start --uid page-mirror-server -a ./node_modules/aws-kcl/bin/kcl-bootstrap -e -p aws.properties --java /usr/bin/java",
+    command => "forever start --uid page-mirror-server --minUptime 1000 --spinSleepTime 60000 -a ./node_modules/aws-kcl/bin/kcl-bootstrap -e -p aws.properties --java /usr/bin/java",
     onlyif => "forever list | grep page-mirror-server | wc -l | grep -q 0",
     path => ["/bin", "/usr/bin", "/usr/local/bin"]
   }
