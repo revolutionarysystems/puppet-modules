@@ -3,15 +3,15 @@ module.exports = {
     assets:{
         bucket: "<%= asset_bucket %>",
         check_interval: <%= asset_check_interval %>,
-		broken_check_interval: <%= asset_error_check_interval %>
+		broken_check_interval: <%= asset_error_check_interval %>,
+        head_timeout: <%= asset_head_timeout %>,
+		timeout: <%= asset_timeout %>,
+		blacklist: <%= asset_blacklist %>,
+		host_timeout_threshold: <%= asset_host_timeout_threshold %>,
+		host_timeout_retry_period: <%= asset_host_timeout_retry_period %>
     },
 	db: {
-		type:"<%= db_type %>",
 		host:"<%= db_host %>",
-		database:"<%= db_name %>",
-		tables:{
-			recordings: "<%= db_table_recordings %>",
-			blacklist: "<%= db_table_blacklist %>"
-		}
+		database:"<%= db_name %>"
 	}
 };
