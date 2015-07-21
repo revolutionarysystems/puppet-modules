@@ -3,7 +3,7 @@ class forever {
   include njs
   
   package { 'forever':
-      require => Package['npm'],
+      require => Package['nodejs'],
       ensure   => present,
       provider => 'npm',
   }

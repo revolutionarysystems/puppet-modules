@@ -8,11 +8,7 @@ class njs {
   package {'nodejs':
     require => Exec['setup-node-repo'],
     ensure => present
-  }
-  
-  package{'npm':
-    ensure => 'present'
-  }
+  }  
   
   file { '/usr/bin/node':
     require => Package['nodejs'],
