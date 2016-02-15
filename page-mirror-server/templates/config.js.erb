@@ -1,6 +1,7 @@
 module.exports = {
     log: "../../var/log/page-mirror-server.log",
     assets:{
+        cache: <%= asset_cache_enabled %>
         bucket: "<%= asset_bucket %>",
         check_interval: <%= asset_check_interval %>,
 		broken_check_interval: <%= asset_error_check_interval %>,
